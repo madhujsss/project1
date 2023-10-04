@@ -1,8 +1,7 @@
  import RestoCard from "./RestoCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import {FETCH_RESTO} from "../utils/constants"
+import { useCallback, useEffect, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import axios from "axios";
 
@@ -12,21 +11,23 @@ const Body = () => {
     const[filteredResto, setOfFilteredResto] = useState([]);
 
     const[searchText, setSearchText] = useState("");
+    const [data, setData] = useState(null);
 
-    useEffect(() => {       
-             fetchData();
-    }, []);
+    useEffect( () => {     
+      if (!data) {
+        fetchData().then((result) => setData(result));
+      }
+}, [data]);
 
     const fetchData = async () => {
       try{
-        const res = await axios(FETCH_RESTO);
-        const json = res.data;
-        console.log(res);
+        const add = await axios.get('http://localhost:5000/api/restoData');
+        const json = add.data;
         setListOfRestorant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
      setOfFilteredResto(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
  }
  catch(error){
-       console.error(eroor.response);
+       console.error(error.response);
  }
     }
 
@@ -35,49 +36,36 @@ const Body = () => {
     if(onlineStatus== false){return <h3>your internet is turned off, please trun it on</h3>};
 
 
-    if (listOfRestorant.length === null){
-        return(
-        <Shimmer />
-        );
-    }
-
-    return ( listOfRestorant.length === 0 ? (
+    return ( listOfRestorant.length === null ? (
         <Shimmer />
       ) : 
-   (<div className="body" style={{backgroundColor: "#e0ffff",}}> 
-   <div className="filters" style={{
-    paddingTop: "1.6rem",
-    paddingBottom: "1.6rem",
-    display: "flex",
-    border: "1px solid",
-    
-    }}>
-    <div style={{margin: "10px 20px", marginLeft:"50px"}}>
-        <input type="text" className="search" value={searchText} 
+   (<div className="body" > 
+   <div className="filters flex  m-4 p-4"  >
+    <div >
+        <input type="text" className="border border-solid border-black" value={searchText} 
         onChange={(e) => {setSearchText(e.target.value)}}/>
-        <button onClick={() => {
+        <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" onClick={() => {
              const filteredResto = listOfRestorant.filter((res) =>
              res.info.name.toLowerCase().includes(searchText.toLowerCase())
            );
            setOfFilteredResto(filteredResto);
+           console.log("search resto");
         }}>Search</button>
     </div>
-    <div className="filter tab" >
-        <button style={{margin: "10px 20px", backgroundColor: "#90ee90"}} onClick={ () =>{
+    <div className="search  p-4 flex items-center" >
+        <button className="px-4 py-2 bg-gray-100 rounded-lg"  onClick={ () =>{
           const filteredResto = listOfRestorant.filter(res => 
             res.info.avgRating > 4);
             setOfFilteredResto(filteredResto);
+            console.log("top resto");
         }}> 
             Top rated restaurant
         </button>
     </div>
     </div>
-    <div className="resto-container" style={{
-      display: "flex",
-      flexWrap: "wrap"
-    }}>
+    <div className="flex flex-wrap" >
       { filteredResto.map((restaurant) => (
-        <Link style={{textDecoration: 'none', opacity:"1", }} key={restaurant.info.id} to={"/restaurant/" + restaurant.info.id}>
+        <Link style={{textDecoration: 'none', opacity:"1", }} key={restaurant.info.id} to={"/restaurant/"}>
         <RestoCard  restdata={restaurant} />
         </Link>
 ))}
