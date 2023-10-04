@@ -7,56 +7,23 @@ const Header = () => {
     const[btnNameReact, setBtnNameReact] = useState(["Login"])
 
     return(
-      <div className="header" style={{
-        display: "flex",
-        justifyContent: "space-between",
-        border: "1px solid",
-        backgroundColor: "#48d1cc",
-        position: "sticky",
-        height: "140px",
-        top: "0"
-      }}> 
-      <div className="image-container">
-      <img className="logo" style={{width: "150px"}} src= {IMG_LOGO} />
+      <div className="header flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50" > 
+      <div className="image-container flex " >
+      <img className="logo w-50" src= {IMG_LOGO} />
       </div>
-      <div className="nav-items" >
-        <ul className="items" style={{
-          display: "flex",
-          listStyleType: "none",
-          padding: "20px 20px",
-          fontSize: "20px",
-         textAlign: "center",
-          }}>
-       <li style={{
-        width: "100px",
-        height: "100px",
-        textAlign: "center",
-        justifyContent: "center",
-       }}>
-        <Link style={{textDecoration: "none", color: "#000000"}} to= "/">Home</Link>
+      <div className="nav-items flex items-center" >
+        <ul className="flex p-4 m-4" >
+       <li className="px-4">
+        <Link  to= "/">Home</Link>
        </li>
-       <li style={{
-        width: "100px",
-        height: "100px",
-        textDecoration: "none",
-       }}>
-        <Link style={{textDecoration: "none", color: "#000000"}} to= "/about">About Us</Link>
+       <li className="px-4">
+        <Link  to= "/about">About Us</Link>
         </li>
-       <li style={{
-        width: "100px",
-        height: "100px"
-       }}>
-        <Link style={{textDecoration: "none", color: "#000000"}} to="/contact">Contact</Link>
+       <li className="px-4">
+        <Link  to="/contact">Contact</Link>
         </li>
-       <li style={{
-        width: "100px",
-        height: "100px"
-       }}>
-        <button className="login" style={{
-            width: "75px",
-            height: "50px",
-            color: "#000000",
-        }} 
+       <li className="px-4">
+        <button className="login" 
         onClick={() => {
             btnNameReact == "Login" ? setBtnNameReact("Logout"): setBtnNameReact("Login")
         }}>

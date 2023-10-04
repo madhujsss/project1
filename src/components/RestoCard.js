@@ -13,29 +13,15 @@ const RestoCard = (props) => {
       avgRating, 
       cuisines} = restdata?.info;
     return(
-      <div className="rest-card" style={{
-        justifyContent: "space-between",
-        //border: "11px solid black",
-        width: "200px",
-        height: "400px",
-        padding: "5px",
-        backgroundColor: "#d3d3d3",
-        cursor: "pointer",
-        margin: "10px",
-        fontFamily: "Basis Grotesque Pro",
-      }}>
-      <img className="restimg" style={
-        {
-          width: "100%",
-          overflow: "auto",
-          height: "50%"
-        }
-      } src={IMG_URL + cloudinaryImageId} />
-      <h3 style={{fontSize: "18px", fontWeight: "300", color: "black"}}>{name}</h3>
-      <h3 style={{fontSize: "18px", color: "black"}}>{costForTwo}</h3>
-      <h3 style={{fontSize: "16px", color: "black"}}>{locality}</h3>
-      <h3 style={{fontSize: "16px", overflow: "hidden", color: "black"}}>{cuisines.join(", ")}</h3>
-      <h3 style={{fontSize: "17px", WebkitTextDecorationColor: "green", color: "black"}}>{avgRating}*</h3>
+      <div className="rest-card m-2 p-2 w-[250px] rounded-lg bg-gray-100 hover:bg-gray-200" >
+        <div className="rounded-lg bg-top overflow-y-clip	fit-content-clip">
+      <img className="h-60 w-60" src={IMG_URL + cloudinaryImageId} /></div>
+      <div>
+      <h3 className="font-bold text-lg text-black">{name}</h3>
+      <h3 className="text-lg text-black">{costForTwo}</h3>
+      <h3 className="text-lg text-black">{locality}</h3>
+      <h3 className="text-lg text-black">{cuisines.join(", ")}</h3>
+      <h3 className="font-bold text-lg text-black">{avgRating}*</h3></div>
       </div>
     )
   }
