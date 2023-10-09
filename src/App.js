@@ -9,6 +9,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { lazy } from "react";
 import Shimmer from "./components/Shimmer";
+import CartDetails from "./components/CartDetails.js";
+import PaymentPage from "./components/PaymentPage";
 
 
 
@@ -42,6 +44,14 @@ const appRouter = createBrowserRouter([
     {
       path: "/restaurant",
       element: <Restomenu />,
+    },
+    {
+      path: "/restaurant/next",
+      element: <CartDetails />,
+    },
+    {
+      path: "/restaurant/next/payment",
+      element: <PaymentPage />,
     }
   ],
     errorElement: <Error />,

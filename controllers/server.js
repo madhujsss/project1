@@ -46,6 +46,23 @@ app.get('/api/menuData', async (req, res) => {
   }
 });
 
+app.get('/api/Cart', async (req, res) => {
+  try {
+   
+    const menuUrl = `https://run.mocky.io/v3/09a0be59-7773-4ea9-975e-f9568185c739`;
+    const response = await axios.get(menuUrl, {
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+    });
+    res.send(response.data);
+  } catch (error) {
+    console.error('Error fetching data from Swiggy API:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
