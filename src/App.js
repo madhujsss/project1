@@ -7,10 +7,10 @@ import Error from "./components/Error";
 import Restomenu from "./components/RestoMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { lazy } from "react";
 import Shimmer from "./components/Shimmer";
 import CartDetails from "./components/CartDetails.js";
 import PaymentPage from "./components/PaymentPage";
+import Contact from "./components/Header";
 
 
 
@@ -23,7 +23,6 @@ const AppLayout = ()  => {
     )    
     }
 
-const  Contact = lazy(() => import("./components/Contact"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +38,7 @@ const appRouter = createBrowserRouter([
     },
     {
       path: "/contact",
-      element:<Suspense fallback={<Shimmer/>}><Contact /></Suspense> ,
+      element:<Contact />,
     },
     {
       path: "/restaurant",
