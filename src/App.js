@@ -16,10 +16,10 @@ import Contact from "./components/Header";
 
 const AppLayout = ()  => {
     return( 
-        <div>
+        <p>
       <Header />
       <Outlet />
-        </div>
+      </p>
     )    
     }
 
