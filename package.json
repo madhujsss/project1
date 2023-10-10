@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/madhujsss/project1.git"
+    "url": "git+https://github.com/madhujsss/project1.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/madhujsss/project1/issues"
   },
-  "homepage": "https://github.com/madhujsss/project1",
+  "homepage": "https://github.com/madhujsss/project1/tree/main/dist",
   "devDependencies": {
     "buffer": "^6.0.3",
     "parcel": "^2.9.3",
