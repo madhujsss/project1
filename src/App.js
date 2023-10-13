@@ -67,7 +67,7 @@ const appRouter = createBrowserRouter([
         element: <Cart />,
     },
     {
-      path: "/restaurant/next/payment",
+      path: "/payment",
       element: <PaymentPage />,
     }
   ],

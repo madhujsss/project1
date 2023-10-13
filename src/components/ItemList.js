@@ -17,15 +17,15 @@ const ItemList = ({ items, dummy }) => {
         >
           <div className="w-9/12">
             <div className="py-2">
-              <span>{item.card.info.name}</span>
-              <span>
+              <span className="block  font-semibold leading-6 text-gray-900 text-lg">{item.card.info.name}</span>
+              <span className="block font-semibold  leading-6 text-gray-900 text-sm">
                 - ₹
                 {item.card.info.price
                   ? item.card.info.price / 100
                   : item.card.info.defaultPrice / 100}
               </span>
             </div>
-            <p className="text-xs">{item.card.info.description}</p>
+            <p className="block leading-6 text-gray-900 text-xs">{item.card.info.description}</p>
           </div>
           <div className="w-3/12 p-4">
             <div className="absolute">
