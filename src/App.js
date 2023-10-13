@@ -10,19 +10,37 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Shimmer from "./components/Shimmer";
 import CartDetails from "./components/CartDetails.js";
 import PaymentPage from "./components/PaymentPage";
-import Contact from "./components/Header";
-
-
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
+import UserContext from "./utils/UserContext";
+import { useCallback, useEffect, useState } from "react";
 
 const AppLayout = ()  => {
+
+  const [userName, setUserName] = useState();
+
+  //authentication
+  useEffect(() => {
+    // Make an API call and send username and password
+    const data = {
+      name: "Madhu",
+    };
+    setUserName(data.name);
+  }, []);
     return( 
-        <p>
-      <Header />
-      <Outlet />
-      </p>
+      <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
     )    
     }
 
+const  Contact = lazy(() => import("./components/Contact"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -38,15 +56,15 @@ const appRouter = createBrowserRouter([
     },
     {
       path: "/contact",
-      element:<Contact />,
+      element:<Suspense fallback={<Shimmer/>}><Contact /></Suspense> ,
     },
     {
       path: "/restaurant",
       element: <Restomenu />,
     },
     {
-      path: "/restaurant/next",
-      element: <CartDetails />,
+      path: "/cart",
+        element: <Cart />,
     },
     {
       path: "/restaurant/next/payment",

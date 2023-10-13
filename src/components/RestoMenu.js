@@ -1,13 +1,17 @@
 import Shimmer from "./Shimmer";
 import useRestoMenu from "../utils/useRestoMenu";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { IMG_URL } from "../utils/constants";
 import { IMG_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import RestaurantCategory from "./RestaurantCategory";
 
 
 const Restomenu = () => { 
     const resInfo = useCallback(useRestoMenu());
+
+    const [showIndex, setShowIndex] = useState(null);
+    const dummy = "Dummy Data";
    
 if( resInfo === null){
     return(
@@ -19,10 +23,11 @@ if( resInfo === null){
  const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
   console.log("item cards" +itemCards);
-  const categories =
-    itemCards?.filter(
+  
+    const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) =>
-        c.card?.["@type"] ===
+        c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
     
@@ -49,34 +54,16 @@ if( resInfo === null){
       <h2 className="bg-pink-100 mt-10 text-xl">
         <div className="ml-6">Menus</div>
       </h2>
-      <ul className="justify-between">
-        {itemCards.map((item) => (
-          <li className="my-4 bg-gray-100 rounded-md mx-6" key={item.card.info.id}>
-            <div className="flex justify-between mr-2">
-            <div className="ml-6">
-              <li className="text-base">{item.card.info.itemAttribute.vegClassifier=="VEG"?"VEG": "NONVEG"}</li>
-            <li className="text-xl"> {item.card.info.name} </li>
-            <li className="text-sm mr-10">
-            {item.card.info.description}
-            </li>
-            <li className="text-xl text-slate-800">
-            {" Rs."}{item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-            </li>
-            </div>
-            <div className="mt-2 mr-2">
-            <li className="h-20 w-20">
-            <img className="rounded-lg bg-top" src={IMG_URL + item.card.info.imageId} />
-            </li>
-            <li>
-              <Link style={{textDecoration: 'none', opacity:"1", }} to={"/restaurant/next"}>
-              <button className="ml-2 mt-2 h-8 w-15 text-sm rounded-md border border-transparent bg-indigo-600 px-3 py-1 text-base font-medium text-white hover:bg-indigo-700">ADD</button>
-              </Link>
-            </li>
-            </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {categories.map((category, index) => (
+        // controlled component
+        <RestaurantCategory
+          key={category?.card?.card.title}
+          data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
+        />
+      ))}
         </div>
     );
 }
