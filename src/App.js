@@ -8,8 +8,6 @@ import Restomenu from "./components/RestoMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Shimmer from "./components/Shimmer";
-import CartDetails from "./components/CartDetails.js";
-import PaymentPage from "./components/PaymentPage";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
@@ -65,10 +63,6 @@ const appRouter = createBrowserRouter([
     {
       path: "/cart",
         element: <Cart />,
-    },
-    {
-      path: "/payment",
-      element: <PaymentPage />,
     }
   ],
     errorElement: <Error />,
