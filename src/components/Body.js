@@ -49,7 +49,7 @@ const Body = () => {
              res.info.name.toLowerCase().includes(searchText.toLowerCase())
            );
            setOfFilteredResto(filteredResto);
-           console.log("search resto");
+          
         }}>Search</button>
     </div>
     <div className="search  p-4 flex items-center" >
@@ -57,7 +57,7 @@ const Body = () => {
           const filteredResto = listOfRestorant.filter(res => 
             res.info.avgRating > 4);
             setOfFilteredResto(filteredResto);
-            console.log("top resto");
+
         }}> 
             Top rated restaurant
         </button>

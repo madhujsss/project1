@@ -2,6 +2,7 @@ import { IMG_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice";
 const ItemList = ({ items, dummy }) => {
+  
   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
@@ -31,7 +32,7 @@ const ItemList = ({ items, dummy }) => {
             <div className="absolute">
             <button
                 className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
-                onClick={() => handleAddItem(item)}
+                onClick={() => handleAddItem(item) } key={item.card.info.id}
               >
                 Add +
               </button>

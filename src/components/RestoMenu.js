@@ -22,7 +22,6 @@ if( resInfo === null){
  const { name, cuisines, costForTwoMessage, avgRating, areaName, city, totalRatingsString,description,imageId,rating} = resInfo?.cards[0]?.card?.card?.info;
  const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
-  console.log("item cards" +itemCards);
   
     const categories =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(

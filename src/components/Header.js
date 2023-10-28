@@ -12,8 +12,7 @@ const Header = () => {
     console.log(loggedInUser);
 
     const cartItems = useSelector((store) => store.cart.items);
-    console.log(cartItems);
-
+    
     return(
       <div className="header flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50" > 
       <div className="image-container flex " >
@@ -31,8 +30,9 @@ const Header = () => {
         <Link  to="/contact">Contact</Link>
         </li>
           <li className="px-4 font-bold text-xl">
-            <Link to="/cart">Cart - ({cartItems.length} items)</Link>
+            <Link key={cartItems.key} to="/cart">Cart - ({cartItems.length} items)</Link>
           </li>
+          {/* key={cartItems.card.info.id} */}
         <button
             className="login"
             onClick={() => {

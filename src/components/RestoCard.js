@@ -3,7 +3,6 @@ import { IMG_URL } from "../utils/constants";
 const RestoCard = (props) => {
     const { restdata } = props;
   
-    console.log(restdata);
   
     const {
       cloudinaryImageId, 
