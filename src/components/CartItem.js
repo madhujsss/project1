@@ -27,10 +27,9 @@ const CartItems = ({ items, dummy }) => {
             <div className="absolute">
             <button
                 className="p-2 mx-16 rounded-lg bg-black text-white shadow-lg"
-                onClick={() => handleAddItem(items)} key={item.card.info.id}
+                
               >{item.ItemQuantity}
-              +
-              </button>
+                            </button>
             </div>
             <img src={IMG_URL + item.card.info.imageId} className="w-full" />
           </div>
