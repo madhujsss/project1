@@ -5,6 +5,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(express.json());
+
 const Razorpay = require("razorpay");
 const instance = new Razorpay({
     key_id: 'rzp_test_ViJg2kp5UGJBLq',
@@ -14,7 +16,7 @@ const instance = new Razorpay({
 app.use(cors());
 
 app.use((req, res, next) => {
-  res.setHeader('Cache-Control', 'public, max-age=300'); // setting for five minutes
+  res.setHeader('Cache-Control', 'public, max-age=300'); 
   next();
 });
 
@@ -68,14 +70,16 @@ app.get('/api/Cart', async (req, res) => {
   }
 });
 
-app.get("/order", (req, res) => {
+app.post("/order", (req, res) => {
+
+  const { amount } = req.body;
   try {
     const options = {
-      amount: 10 * 100, // amount == Rs 10
+      amount: amount * 100, 
       currency: "INR",
       receipt: "receipt#1",
       payment_capture: 0,
- // 1 for automatic capture // 0 for manual capture
+ 
     };
   instance.orders.create(options, async function (err, order) {
     if (err) {
@@ -93,13 +97,15 @@ app.get("/order", (req, res) => {
 });
 
 app.post("/capture/:paymentId", (req, res) => {
+  const { amount } = req.body;
+
   try {
     return request(
      {
      method: "POST",
      url: `https://rzp_test_ViJg2kp5UGJBLq:4WuKNfk47lfUIoSbUfYYB7qt@api.razorpay.com/v1/payments/${req.params.paymentId}/capture`,
      form: {
-        amount: 10 * 100, // amount == Rs 10 // Same As Order amount
+        amount: amount * 100, 
         currency: "INR",
       },
     },

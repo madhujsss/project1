@@ -18,34 +18,42 @@ const Cart = () => {
 
   const TotalAmount = useSelector((state) => state.cart.itemTotalAmount);
 
-  const paymentHandler = async (e) => {
-    const API_URL = 'http://localhost:5000/'
-    e.preventDefault();
+  const paymentHandler = async (amount) => {
+    const API_URL = 'http://localhost:5000/';
     const orderUrl = `${API_URL}order`;
-    const response = await Axios.get(orderUrl);
-    const { data } = response;
-    const options = {
-      key: process.env.RAZOR_PAY_KEY_ID,
-      name: "Fast Food",
-      description: "Order online - Fast Food",
-      order_id: data.id,
-      handler: async (response) => {
-        try {
-         const paymentId = response.razorpay_payment_id;
-         const url = `${API_URL}capture/${paymentId}`;
-         const captureResponse = await Axios.post(url, {})
-        //  console.log(captureResponse.data);
-        } catch (err) {
-          console.log(err);
-        }
-      },
-      theme: {
-        color: "#686CFD",
-      },
-    };
-    const rzp1 = new window.Razorpay(options);
-    rzp1.open();
-    };
+  
+    try {
+      const response = await Axios.post(orderUrl, { amount });
+      const { data } = response;
+  
+      const options = {
+        key: process.env.RAZOR_PAY_KEY_ID,
+        name: "Fast Food",
+        description: "Order online - Fast Food",
+        order_id: data.id,
+        handler: async (response) => {
+          try {
+            const paymentId = response.razorpay_payment_id;
+            const captureUrl = `${API_URL}capture/${paymentId}`;
+  
+            const captureResponse = await Axios.post(captureUrl, { amount }); 
+          
+          } catch (err) {
+            console.log(err);
+          }
+        },
+        theme: {
+          color: "#686CFD",
+        },
+      };
+  
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
 
    
   return (
@@ -69,7 +77,7 @@ const Cart = () => {
         </div>
         <div className="flex justify-between">
         <div className="mt-10 font-bold text-xl ml-10">Amount to pay is ${TotalAmount}</div>
-         <button className=" px-5 py-2 mt-10 bg-cyan-500 text-white rounded-lg" onClick={paymentHandler}>Continue Booking</button>
+         <button className=" px-5 py-2 mt-10 bg-cyan-500 text-white rounded-lg" onClick={() => paymentHandler(TotalAmount)}>Continue Booking</button>
          </div>
       </div>
       </div>
