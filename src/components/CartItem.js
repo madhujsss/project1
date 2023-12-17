@@ -31,7 +31,7 @@ const CartItems = ({ items, dummy }) => {
               >{item.ItemQuantity}
                             </button>
             </div>
-            <img src={IMG_URL + item.card.info.imageId} className="w-full" />
+            <img src={IMG_URL + item.card.info.imageId} className="w-full sm:w-full lg:w-full" />
           </div>
           <div className="w-6/12 m-2">
             <div className="p-2">

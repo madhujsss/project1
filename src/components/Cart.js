@@ -58,7 +58,7 @@ const Cart = () => {
    
   return (
     <div className=" m-4 p-4 overflow-auto ">
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row sm:flex-row justify-between text-xl sm:text-2xl lg:text-2xl">
         <div>
       <h1 className="text-2xl font-bold p-4 m-4">Cart</h1>
         <div className="bg-blue">

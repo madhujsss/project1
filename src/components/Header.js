@@ -14,36 +14,26 @@ const Header = () => {
     const cartItems = useSelector((store) => store.cart.items);
     
     return(
-      <div className="header flex justify-between bg-pink-100 shadow-lg sm:bg-yellow-50 lg:bg-green-50" > 
-      <div className="image-container flex " >
-      <img className="logo w-50" src= {IMG_LOGO} />
+      <div className="header flex flex-col md:flex-row flex justify-between  lg:shadow-lg  lg:bg-green-50 sm:bg-yellow-50" > 
+      <div className="image-container flex justify-between  md:justify-center sm:justify-center" >
+      <img className="logo md:w-20 lg:w-50 sm:w-20 ml-10" src= {IMG_LOGO} />
       </div>
       <div className="nav-items flex items-center" >
         <ul className="flex p-4 m-4" >
-       <li className="px-4">
+       <li className="px-4 text-xl sm:text-2xl lg:text-2xl">
         <Link  to= "/">Home</Link>
        </li>
-       <li className="px-4">
+       <li className="px-4 text-xl sm:text-2xl lg:text-2xl">
         <Link  to= "/about">About Us</Link>
         </li>
-       <li className="px-4">
+       <li className="px-4 text-xl sm:text-2xl lg:text-2xl">
         <Link  to="/contact">Contact</Link>
         </li>
-          <li className="px-4 font-bold text-xl">
+          <li className="px-4 font-bold text-xl sm:text-2xl lg:text-2xl">
             <Link key={cartItems.key} to="/cart">Cart - ({cartItems.length} items)</Link>
           </li>
           {/* key={cartItems.card.info.id} */}
-        <button
-            className="login"
-            onClick={() => {
-              btnNameReact === "Login"
-                ? setBtnNameReact("Logout")
-                : setBtnNameReact("Login");
-            }}
-          >
-            {btnNameReact}
-          </button>
-
+      
           <li className="px-4 ">{loggedInUser}</li>
        </ul>
        </div>

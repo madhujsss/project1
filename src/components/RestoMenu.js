@@ -31,10 +31,10 @@ if( resInfo === null){
     );
     
     return(
-        <div className="text-black mt-10 mx-80" >
-          <div className=" bg-gray-100 flex justify-between">
+        <div className="text-black mt-10 sm:mx-80 lg:mx-80 md:mx-80  " >
+          <div className=" bg-gray-100 md:bg-gray-100 flex flex-col md:flex-row sm:flex-row justify-between">
        <div>
-       <h1 className="ml-6 text-2xl">{name}-</h1>
+       <h1 className="ml-6 text-2xl sm:text-4xl md:text-2xl lg:text-2xl">{name}-</h1>
       <p className="ml-6 text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
@@ -42,7 +42,7 @@ if( resInfo === null){
        {city}-{areaName}
       </p>
        </div>
-       <div className="mr-6 text-lg text-green-600 text-lg">
+       <div className="mr-6 text-lg text-green-600 text-lg ml-6">
         {avgRating} *
         <div>
         {totalRatingsString}

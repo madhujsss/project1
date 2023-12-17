@@ -18,9 +18,9 @@ const AppLayout = ()  => {
 
   const [userName, setUserName] = useState();
 
-  //authentication
+ 
   useEffect(() => {
-    // Make an API call and send username and password
+   
     const data = {
       name: "Madhu",
     };

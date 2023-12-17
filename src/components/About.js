@@ -2,7 +2,7 @@ import React from 'react'
 
 const About = () => {
   return (
-    <div className='flex p-20'>
+    <div className='flex flex-col md:flex-row p-20'>
     <div className='h-100 w-100 items-center p-10 ' >
       <h1>About Us</h1>
       <h2 className='text-center'>Welcome To <span id="W_Name1">Dr.Food</span></h2>

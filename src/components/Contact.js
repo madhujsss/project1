@@ -3,7 +3,7 @@ const Contact = () => {
     return (
         <div style={{display: "flex",
         padding: "0px 20px",
-       }}>
+       }} className="flex flex-col md:flex-row">
         <div class="form-wrapper" style={{ display: "flex", 
         maxWidth: "1320px",
         marginTop: "60px",
