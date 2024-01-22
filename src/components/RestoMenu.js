@@ -31,7 +31,7 @@ if( resInfo === null){
     );
     
     return(
-        <div className="text-black mt-10 sm:mx-80 lg:mx-80 md:mx-80  " >
+        <div className="text-black mt-10 w-full " >
           <div className=" bg-gray-100 md:bg-gray-100 flex flex-col md:flex-row sm:flex-row justify-between">
        <div>
        <h1 className="ml-6 text-2xl sm:text-4xl md:text-2xl lg:text-2xl">{name}-</h1>

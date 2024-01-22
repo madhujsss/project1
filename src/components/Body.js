@@ -40,7 +40,7 @@ const Body = () => {
         <Shimmer />
       ) : 
    (<div className="body" > 
-   <div className="filters flex flex-col md:flex-row  m-4 p-4"  >
+   <div className="filters flex flex-col md:flex-row w-full m-4 p-4"  >
     <div >
         <input type="text" className="border border-solid border-black" value={searchText} 
         onChange={(e) => {setSearchText(e.target.value)}}/>
