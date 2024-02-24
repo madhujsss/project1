@@ -21,6 +21,7 @@ const Body = () => {
 
     const fetchData = async () => {
       try{
+        
         const restoUrl = `https://run.mocky.io/v3/d30d6982-86f1-4d4e-a58f-777fe98e2b90`;
         const response = await axios.get(restoUrl, {
           headers: {
