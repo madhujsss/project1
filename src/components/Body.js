@@ -21,8 +21,14 @@ const Body = () => {
 
     const fetchData = async () => {
       try{
-        const add = await axios.get('http://localhost:5000/api/restoData');
-        const json = add.data;
+        
+        const restoUrl = `https://run.mocky.io/v3/d30d6982-86f1-4d4e-a58f-777fe98e2b90`;
+        const response = await axios.get(restoUrl, {
+          headers: {
+            'Content-Type': 'application/json', 
+          },
+        });
+        const json = response.data;
         setListOfRestorant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
      setOfFilteredResto(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
  }

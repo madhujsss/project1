@@ -15,8 +15,14 @@ const useRestoMenu = () => {
  const fetchMenu = async () => {
        
  try{
-        const res =  await axios.get('http://localhost:5000/api/menuData');
-        const json = res.data.data;
+  
+       const menuUrl = `https://run.mocky.io/v3/08d67b2b-9184-439d-8add-620b003a4b4c`;
+    const response = await axios.get(menuUrl, {
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+    });
+        const json = response.data.data;
         setRestoMenus(json);
  }
  catch(error){
